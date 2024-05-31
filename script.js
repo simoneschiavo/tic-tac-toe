@@ -1,7 +1,5 @@
 // Add the gameboard
 const Gameboard = (function () {
-    const rows = 3;
-    const columns = 3;
     const board = ["", "", "", "", "", "", "", "", ""];
 
     const render = () => board;
@@ -9,4 +7,4 @@ const Gameboard = (function () {
     return { render };
 })();
 
-// console.table(Gameboard.getBoard());
+// console.table(Gameboard.render());
