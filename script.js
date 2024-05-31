@@ -7,7 +7,7 @@ const Gameboard = (function () {
     const render = () => {
         gameboardDiv.innerHTML = "";
         board.forEach((cell, position) => {
-            const cellDiv = document.createElement("div");
+            const cellDiv = document.createElement("button");
             cellDiv.classList.add("cell");
             cellDiv.setAttribute("data-attribute", `${position}`);
             const cellToken = document.createElement("div");
@@ -15,11 +15,15 @@ const Gameboard = (function () {
             cellToken.textContent = cell;
             cellDiv.appendChild(cellToken);
             gameboardDiv.appendChild(cellDiv);
+
+            cellDiv.addEventListener("click", () => {
+                ScreenController.playRound(cellDiv);
+            });
         });
     };
 
     const markCell = position => {
-        board[position] = getActivePlayer().token;
+        board[position] = GameController.getActivePlayer().token;
     };
 
     return { render, markCell };
@@ -51,12 +55,23 @@ const GameController = (function (playerOneName, playerTwoName) {
 
     const getActivePlayer = () => activePlayer;
 
+    // const playRound = (cell) => {
+    //     const cellPosition = cell.getAttribute("data-attribute");
+    //     Gameboard.markCell(cellPosition);
+    //     Gameboard.render();
+    // }
+
+    return { changePlayerTurn, getActivePlayer }
+
+})();
+
+const ScreenController = (function () {
     const playRound = (cell) => {
         const cellPosition = cell.getAttribute("data-attribute");
         Gameboard.markCell(cellPosition);
+        GameController.changePlayerTurn();
         Gameboard.render();
-    }
+    };
 
-    return { changePlayerTurn, getActivePlayer, playRound }
-
+    return { playRound }
 })();
