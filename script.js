@@ -21,10 +21,28 @@ const Gameboard = (function () {
     return { render };
 })();
 
-const GameControllers = (function () {
+const GameController = (function (playerOneName, playerTwoName) {
     // When "Start new game" button is clicked, render the gameboard
     const newGameBtn = document.querySelector(".new-game-btn");
     newGameBtn.addEventListener("click", () => {
         Gameboard.render();
     });
+
+    const players = [
+        {
+            name: playerOneName,
+            token: "x",
+        },
+        {
+            name: playerTwoName,
+            token: "o",
+        }
+    ];
+
+    let activePlayer = players[0];
+
+    const changePlayerTurn = () => {
+        activePlayer = activePlayer === players[0] ? players[1] : players[0];
+    };
+
 })();
