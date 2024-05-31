@@ -18,7 +18,11 @@ const Gameboard = (function () {
         });
     };
 
-    return { render };
+    const markCell = position => {
+        board[position] = getActivePlayer().token;
+    };
+
+    return { render, markCell };
 })();
 
 const GameController = (function (playerOneName, playerTwoName) {
@@ -44,5 +48,13 @@ const GameController = (function (playerOneName, playerTwoName) {
     const changePlayerTurn = () => {
         activePlayer = activePlayer === players[0] ? players[1] : players[0];
     };
+
+    const getActivePlayer = () => activePlayer;
+
+    const playRound = () => {
+
+    }
+
+    return { changePlayerTurn, getActivePlayer }
 
 })();
