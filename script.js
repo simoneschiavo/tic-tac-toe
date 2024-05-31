@@ -1,4 +1,4 @@
-// Add the gameboard
+
 const Gameboard = (function () {
     const board = ["", "", "", "", "", "", "", "", ""];
 
@@ -21,4 +21,10 @@ const Gameboard = (function () {
     return { render };
 })();
 
-Gameboard.render();
+const GameControllers = (function () {
+    // When "Start new game" button is clicked, render the gameboard
+    const newGameBtn = document.querySelector(".new-game-btn");
+    newGameBtn.addEventListener("click", () => {
+        Gameboard.render();
+    });
+})();
