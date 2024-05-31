@@ -9,7 +9,7 @@ const Gameboard = (function () {
         board.forEach((cell, position) => {
             const cellDiv = document.createElement("div");
             cellDiv.classList.add("cell");
-            cellDiv.setAttribute("data-attribute", `cell-${position}`);
+            cellDiv.setAttribute("data-attribute", `${position}`);
             const cellToken = document.createElement("div");
             cellToken.classList.add("token");
             cellToken.textContent = cell;
