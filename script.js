@@ -10,6 +10,9 @@ const Gameboard = (function () {
             const cellDiv = document.createElement("button");
             cellDiv.classList.add("cell");
             cellDiv.setAttribute("data-attribute", `${position}`);
+            if (cell !== "") {
+                cellDiv.disabled = true;
+            }
             const cellToken = document.createElement("div");
             cellToken.classList.add("token");
             cellToken.textContent = cell;
