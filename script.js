@@ -1,6 +1,6 @@
 
 const Gameboard = (function () {
-    const board = ["", "", "", "", "", "", "", "", ""];
+    let board = ["", "", "", "", "", "", "", "", ""];
 
     const gameboardDiv = document.querySelector("#gameboard");
 
@@ -25,17 +25,22 @@ const Gameboard = (function () {
         });
     };
 
+    const reset = () => {
+        board = ["", "", "", "", "", "", "", "", ""];
+    };
+
     const markCell = position => {
         board[position] = GameController.getActivePlayer().token;
     };
 
-    return { render, markCell };
+    return { render, reset, markCell };
 })();
 
 const GameController = (function (playerOneName, playerTwoName) {
     // When "Start new game" button is clicked, render the gameboard
     const newGameBtn = document.querySelector(".new-game-btn");
     newGameBtn.addEventListener("click", () => {
+        Gameboard.reset();
         Gameboard.render();
     });
 
