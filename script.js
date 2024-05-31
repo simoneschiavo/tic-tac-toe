@@ -51,10 +51,12 @@ const GameController = (function (playerOneName, playerTwoName) {
 
     const getActivePlayer = () => activePlayer;
 
-    const playRound = () => {
-
+    const playRound = (cell) => {
+        const cellPosition = cell.getAttribute("data-attribute");
+        Gameboard.markCell(cellPosition);
+        Gameboard.render();
     }
 
-    return { changePlayerTurn, getActivePlayer }
+    return { changePlayerTurn, getActivePlayer, playRound }
 
 })();
