@@ -2,9 +2,15 @@
 const Gameboard = (function () {
     const board = ["", "", "", "", "", "", "", "", ""];
 
-    const render = () => board;
+    const gameboardDiv = document.querySelector("#gameboard");
+    const render = () => {
+        gameboardDiv.innerHTML = "";
+        board.forEach((cell, position) => {
+            gameboardDiv.innerHTML += `<div class="cell" id="cell-${position}">${cell}</div>`;
+        });
+    };
 
     return { render };
 })();
 
-// console.table(Gameboard.render());
+Gameboard.render();
