@@ -17,7 +17,7 @@ const Gameboard = (function () {
             gameboardDiv.appendChild(cellDiv);
 
             cellDiv.addEventListener("click", () => {
-                ScreenController.playRound(cellDiv);
+                GameController.playRound(cellDiv);
             });
         });
     };
@@ -55,23 +55,17 @@ const GameController = (function (playerOneName, playerTwoName) {
 
     const getActivePlayer = () => activePlayer;
 
-    // const playRound = (cell) => {
-    //     const cellPosition = cell.getAttribute("data-attribute");
-    //     Gameboard.markCell(cellPosition);
-    //     Gameboard.render();
-    // }
-
-    return { changePlayerTurn, getActivePlayer }
-
-})();
-
-const ScreenController = (function () {
     const playRound = (cell) => {
         const cellPosition = cell.getAttribute("data-attribute");
         Gameboard.markCell(cellPosition);
-        GameController.changePlayerTurn();
+        changePlayerTurn();
         Gameboard.render();
-    };
+    }
 
-    return { playRound }
+    return { changePlayerTurn, getActivePlayer, playRound }
+
 })();
+
+// const ScreenController = (function () {
+//    
+// })();
