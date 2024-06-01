@@ -38,7 +38,7 @@ const Gameboard = (function () {
     return { get, render, reset, markCell };
 })();
 
-const GameController = (function (playerOneName, playerTwoName) {
+const GameController = (function () {
     // When "Start new game" button is clicked, render the gameboard
     const newGameBtn = document.querySelector(".new-game-btn");
     newGameBtn.addEventListener("click", () => {
@@ -48,12 +48,14 @@ const GameController = (function (playerOneName, playerTwoName) {
 
     const players = [
         {
-            name: playerOneName,
+            name: "Player One",
             token: "x",
+            score: 0,
         },
         {
-            name: playerTwoName,
+            name: "Player Two",
             token: "o",
+            score: 0,
         }
     ];
 
@@ -89,6 +91,7 @@ const GameController = (function (playerOneName, playerTwoName) {
             const values = combinations.map(position => Gameboard.get()[position]);
             if (values[0] !== "" && values.every(value => value === values[0])) {
                 ScreenController.showWinner();
+                getActivePlayer().score++;
             }; 
         };
     };
