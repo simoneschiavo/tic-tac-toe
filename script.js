@@ -59,6 +59,7 @@ const GameController = (function () {
     const checkNewGameBtnEnablement = () => {
         if (players[0].name !== "Player One" && players[1].name !== "Player Two") {
             newGameBtn.disabled = false;
+            ScreenController.showScoreControllers();
         };
     }; 
 
@@ -252,5 +253,10 @@ const ScreenController = (function () {
         gameControllers.classList.toggle("hidden");
     };
 
-    return { showWinnerMsg, removeWinnerMsg, showTieMsg, removeTieMsg, updateScore, showMoveMsg, updateHeroSelectorMsg, updateVillainSelectorMsg, hideGameControllers }
+    const scoreControllers = document.querySelector(".score-controllers");
+    const showScoreControllers = () => {
+        scoreControllers.classList.toggle("hidden");
+    };
+
+    return { showWinnerMsg, removeWinnerMsg, showTieMsg, removeTieMsg, updateScore, showMoveMsg, updateHeroSelectorMsg, updateVillainSelectorMsg, hideGameControllers, showScoreControllers }
 })();
