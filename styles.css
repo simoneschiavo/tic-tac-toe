@@ -48,6 +48,18 @@ p, h1, h2, h3, h4, h5, h6 {
 
 /* Actual CSS */
 
+/* Global */
+
+button:hover {
+  cursor: pointer;
+}
+
+button > img {
+  height: 150px;
+}
+
+/*Gameboard */
+
 #gameboard {
     display: grid;
     grid-template-columns: repeat(3, 100px);
