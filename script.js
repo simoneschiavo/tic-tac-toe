@@ -2,6 +2,8 @@
 const Gameboard = (function () {
     let board = ["", "", "", "", "", "", "", "", ""];
 
+    const get = () => board;
+
     const gameboardDiv = document.querySelector("#gameboard");
 
     const render = () => {
@@ -33,7 +35,7 @@ const Gameboard = (function () {
         board[position] = GameController.getActivePlayer().token;
     };
 
-    return { render, reset, markCell };
+    return { get, render, reset, markCell };
 })();
 
 const GameController = (function (playerOneName, playerTwoName) {
@@ -68,7 +70,7 @@ const GameController = (function (playerOneName, playerTwoName) {
         Gameboard.markCell(cellPosition);
         changePlayerTurn();
         Gameboard.render();
-    }
+    };
 
     return { changePlayerTurn, getActivePlayer, playRound }
 
