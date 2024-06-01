@@ -72,7 +72,27 @@ const GameController = (function (playerOneName, playerTwoName) {
         Gameboard.render();
     };
 
-    return { changePlayerTurn, getActivePlayer, playRound }
+    const checkWinner = () => {
+        const winningCombinations = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6],
+        ];
+
+        for (let combinations of winningCombinations) {
+            const values = combinations.map(position => board[position]);
+            if (values[0] !== "" && values.every(value => value === values[0])) {
+                ScreenController.showWinner();
+            }; 
+        };
+    };
+
+    return { changePlayerTurn, getActivePlayer, playRound, checkWinner }
 
 })();
 
