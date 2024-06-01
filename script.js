@@ -68,6 +68,7 @@ const GameController = (function (playerOneName, playerTwoName) {
     const playRound = (cell) => {
         const cellPosition = cell.getAttribute("data-attribute");
         Gameboard.markCell(cellPosition);
+        checkWinner();
         changePlayerTurn();
         Gameboard.render();
     };
@@ -85,7 +86,7 @@ const GameController = (function (playerOneName, playerTwoName) {
         ];
 
         for (let combinations of winningCombinations) {
-            const values = combinations.map(position => board[position]);
+            const values = combinations.map(position => Gameboard.get()[position]);
             if (values[0] !== "" && values.every(value => value === values[0])) {
                 ScreenController.showWinner();
             }; 
@@ -96,6 +97,6 @@ const GameController = (function (playerOneName, playerTwoName) {
 
 })();
 
-// const ScreenController = (function () {
-//    
-// })();
+const ScreenController = (function () {
+   
+})();
