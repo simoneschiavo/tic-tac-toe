@@ -57,6 +57,7 @@ const GameController = (function () {
         Gameboard.reset();
         Gameboard.render();
         newGameBtn.textContent = "Next battle"
+        newGameBtn.disabled = true;
         ScreenController.showMoveMsg();
         ScreenController.removeWinnerMsg();
         ScreenController.removeTieMsg();
@@ -115,6 +116,7 @@ const GameController = (function () {
                 ScreenController.showWinnerMsg();
                 ScreenController.updateScore(getActivePlayer());
                 Gameboard.disableAllCells();
+                newGameBtn.disabled = false;
             } else {
                 checkTie();
             }; 
@@ -125,6 +127,7 @@ const GameController = (function () {
         if (Gameboard.get().every(position => position !== "")) {
             ScreenController.showTieMsg();
             Gameboard.disableAllCells();
+            newGameBtn.disabled = false;
         };
     };
 
