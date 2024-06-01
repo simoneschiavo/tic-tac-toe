@@ -94,6 +94,8 @@ const GameController = (function () {
                 getActivePlayer().score++;
             }; 
         };
+
+        // Add logic to check for ties here later
     };
 
     return { changePlayerTurn, getActivePlayer, playRound, checkWinner }
@@ -101,5 +103,14 @@ const GameController = (function () {
 })();
 
 const ScreenController = (function () {
-   
+    const gameControllers = document.querySelector(".game-controllers");
+    const winnerMsg = document.createElement("div");
+    winnerMsg.classList.add("winner-msg");
+
+    const showWinner = () => {
+        winnerMsg.textContent = `${GameController.getActivePlayer().name} won!`;
+        gameControllers.appendChild(winnerMsg);
+    };
+
+    return { showWinner }
 })();
