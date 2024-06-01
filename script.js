@@ -1,6 +1,7 @@
 
 const Gameboard = (function () {
     let board = ["", "", "", "", "", "", "", "", ""];
+    let gameEnded = false;
 
     const get = () => board;
 
@@ -12,7 +13,7 @@ const Gameboard = (function () {
             const cellDiv = document.createElement("button");
             cellDiv.classList.add("cell");
             cellDiv.setAttribute("data-attribute", `${position}`);
-            if (cell !== "") {
+            if (cell !== "" || gameEnded) {
                 cellDiv.disabled = true;
             }
             const cellToken = document.createElement("div");
@@ -35,7 +36,11 @@ const Gameboard = (function () {
         board[position] = GameController.getActivePlayer().token;
     };
 
-    return { get, render, reset, markCell };
+    const disableAllCells = () => {
+        gameEnded = true;
+    };
+
+    return { get, render, reset, markCell, disableAllCells };
 })();
 
 const GameController = (function () {
@@ -96,6 +101,7 @@ const GameController = (function () {
             if (values[0] !== "" && values.every(value => value === values[0])) {
                 ScreenController.showWinnerMsg();
                 ScreenController.updateScore(getActivePlayer());
+                Gameboard.disableAllCells();
             } else {
                 checkTie();
             }; 
