@@ -50,11 +50,13 @@ const GameController = (function () {
 
     const players = [
         {
+            id: 1,
             name: "Player One",
             token: "x",
             score: 0,
         },
         {
+            id: 2,
             name: "Player Two",
             token: "o",
             score: 0,
@@ -93,7 +95,7 @@ const GameController = (function () {
             const values = combinations.map(position => Gameboard.get()[position]);
             if (values[0] !== "" && values.every(value => value === values[0])) {
                 ScreenController.showWinnerMsg();
-                getActivePlayer().score++;
+                ScreenController.updateScore(getActivePlayer());
             } else {
                 checkTie();
             }; 
@@ -119,6 +121,9 @@ const ScreenController = (function () {
     const tieMsg = document.createElement("div");
     tieMsg.classList.add("tie-msg");
 
+    const playerOneScoreDiv = document.querySelector(".playerOneScore");
+    const playerTwoScoreDiv = document.querySelector(".playerTwoScore");
+
     const showWinnerMsg = () => {
         winnerMsg.textContent = `${GameController.getActivePlayer().name} won!`;
         gameControllers.appendChild(winnerMsg);
@@ -137,5 +142,12 @@ const ScreenController = (function () {
         gameControllers.removeChild(tieMsg);
     };
 
-    return { showWinnerMsg, removeWinnerMsg, showTieMsg, removeTieMsg }
+    const updateScore = player => {
+        player.score++;
+        player.id === 1
+            ? playerOneScoreDiv.textContent = player.score
+            : playerTwoScoreDiv.textContent = player.score;
+    };
+
+    return { showWinnerMsg, removeWinnerMsg, showTieMsg, removeTieMsg, updateScore }
 })();
