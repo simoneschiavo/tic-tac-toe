@@ -45,6 +45,7 @@ const GameController = (function () {
         Gameboard.reset();
         Gameboard.render();
         ScreenController.removeWinnerMsg();
+        ScreenController.removeTieMsg();
     });
 
     const players = [
@@ -93,20 +94,30 @@ const GameController = (function () {
             if (values[0] !== "" && values.every(value => value === values[0])) {
                 ScreenController.showWinnerMsg();
                 getActivePlayer().score++;
+            } else {
+                checkTie();
             }; 
         };
-
-        // Add logic to check for ties here later
     };
 
-    return { changePlayerTurn, getActivePlayer, playRound, checkWinner }
+    const checkTie = () => {
+        if (Gameboard.get().every(position => position !== "")) {
+            ScreenController.showTieMsg();
+        };
+    };
+
+    return { changePlayerTurn, getActivePlayer, playRound, checkWinner, checkTie }
 
 })();
 
 const ScreenController = (function () {
     const gameControllers = document.querySelector(".game-controllers");
+
     const winnerMsg = document.createElement("div");
     winnerMsg.classList.add("winner-msg");
+
+    const tieMsg = document.createElement("div");
+    tieMsg.classList.add("tie-msg");
 
     const showWinnerMsg = () => {
         winnerMsg.textContent = `${GameController.getActivePlayer().name} won!`;
@@ -117,5 +128,14 @@ const ScreenController = (function () {
         gameControllers.removeChild(winnerMsg);
     };
 
-    return { showWinnerMsg, removeWinnerMsg }
+    const showTieMsg = () => {
+        tieMsg.textContent = `This game is a tie - Keep on playing!`;
+        gameControllers.appendChild(tieMsg);
+    };
+
+    const removeTieMsg = () => {
+        gameControllers.removeChild(tieMsg);
+    };
+
+    return { showWinnerMsg, removeWinnerMsg, showTieMsg, removeTieMsg }
 })();
