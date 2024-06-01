@@ -30,6 +30,7 @@ const Gameboard = (function () {
 
     const reset = () => {
         board = ["", "", "", "", "", "", "", "", ""];
+        gameEnded = false;
     };
 
     const markCell = position => {
