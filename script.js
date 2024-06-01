@@ -58,6 +58,7 @@ const GameController = (function () {
         Gameboard.render();
         newGameBtn.textContent = "Next battle"
         newGameBtn.disabled = true;
+        ScreenController.hideGameControllers();
         ScreenController.showMoveMsg();
         ScreenController.removeWinnerMsg();
         ScreenController.removeTieMsg();
@@ -236,5 +237,9 @@ const ScreenController = (function () {
       )} to fight for you. Good luck!`;
     };
 
-    return { showWinnerMsg, removeWinnerMsg, showTieMsg, removeTieMsg, updateScore, showMoveMsg, updateHeroSelectorMsg, updateVillainSelectorMsg }
+    const hideGameControllers = () => {
+        gameControllers.classList.toggle("hidden");
+    };
+
+    return { showWinnerMsg, removeWinnerMsg, showTieMsg, removeTieMsg, updateScore, showMoveMsg, updateHeroSelectorMsg, updateVillainSelectorMsg, hideGameControllers }
 })();
