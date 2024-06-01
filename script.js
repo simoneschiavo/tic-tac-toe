@@ -44,6 +44,7 @@ const GameController = (function () {
     newGameBtn.addEventListener("click", () => {
         Gameboard.reset();
         Gameboard.render();
+        ScreenController.removeWinnerMsg();
     });
 
     const players = [
@@ -90,7 +91,7 @@ const GameController = (function () {
         for (let combinations of winningCombinations) {
             const values = combinations.map(position => Gameboard.get()[position]);
             if (values[0] !== "" && values.every(value => value === values[0])) {
-                ScreenController.showWinner();
+                ScreenController.showWinnerMsg();
                 getActivePlayer().score++;
             }; 
         };
@@ -107,10 +108,14 @@ const ScreenController = (function () {
     const winnerMsg = document.createElement("div");
     winnerMsg.classList.add("winner-msg");
 
-    const showWinner = () => {
+    const showWinnerMsg = () => {
         winnerMsg.textContent = `${GameController.getActivePlayer().name} won!`;
         gameControllers.appendChild(winnerMsg);
     };
 
-    return { showWinner }
+    const removeWinnerMsg = () => {
+        gameControllers.removeChild(winnerMsg);
+    };
+
+    return { showWinnerMsg, removeWinnerMsg }
 })();
