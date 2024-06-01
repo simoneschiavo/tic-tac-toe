@@ -138,6 +138,7 @@ const GameController = (function () {
             const heroImg = heroAvatarBtn.querySelector("img");
             players[0].name = heroImg.getAttribute("alt");
             players[0].token = heroImg.getAttribute("src");
+            ScreenController.updateHeroSelectorMsg(heroImg);
         });
     });
 
@@ -152,6 +153,7 @@ const GameController = (function () {
             const villainImg = villainAvatarBtn.querySelector("img");
             players[1].name = villainImg.getAttribute("alt");
             players[1].token = villainImg.getAttribute("src");
+            ScreenController.updateVillainSelectorMsg(villainImg);
         });
     });
 
@@ -218,5 +220,17 @@ const ScreenController = (function () {
         };
     };
 
-    return { showWinnerMsg, removeWinnerMsg, showTieMsg, removeTieMsg, updateScore, showMoveMsg }
+    const updateHeroSelectorMsg = (img) => {
+        const heroSelectorMsg = document.querySelector(".hero-selector-msg");
+        heroSelectorMsg.textContent = `Player 1, you have selected ${img.getAttribute("alt")} as your warrior. Good luck!`;
+    };
+
+    const updateVillainSelectorMsg = (img) => {
+      const villainSelectorMsg = document.querySelector(".villain-selector-msg");
+      villainSelectorMsg.textContent = `Player 2, you have chosen ${img.getAttribute(
+        "alt"
+      )} to fight for you. Good luck!`;
+    };
+
+    return { showWinnerMsg, removeWinnerMsg, showTieMsg, removeTieMsg, updateScore, showMoveMsg, updateHeroSelectorMsg, updateVillainSelectorMsg }
 })();
