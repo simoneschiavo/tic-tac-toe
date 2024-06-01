@@ -15,10 +15,14 @@ const Gameboard = (function () {
             cellDiv.setAttribute("data-attribute", `${position}`);
             if (cell !== "" || gameEnded) {
                 cellDiv.disabled = true;
-            }
+            };
             const cellToken = document.createElement("div");
             cellToken.classList.add("token");
-            cellToken.textContent = cell;
+            if (cell !== "") {
+                const avatar = document.createElement("img");
+                avatar.src = cell;
+                cellToken.appendChild(avatar);
+            };
             cellDiv.appendChild(cellToken);
             gameboardDiv.appendChild(cellDiv);
 
@@ -131,18 +135,24 @@ const GameController = (function () {
                     btn.disabled = true;
                 };
             });
+            const heroImg = heroAvatarBtn.querySelector("img");
+            players[0].name = heroImg.getAttribute("alt");
+            players[0].token = heroImg.getAttribute("src");
         });
     });
 
     const villainAvatarBtns = document.querySelectorAll(".villain-avatar");
     villainAvatarBtns.forEach((villainAvatarBtn) => {
-      villainAvatarBtn.addEventListener("click", () => {
-        villainAvatarBtns.forEach((btn) => {
-          if (btn !== villainAvatarBtn) {
-            btn.disabled = true;
-          }
+        villainAvatarBtn.addEventListener("click", () => {
+            villainAvatarBtns.forEach((btn) => {
+            if (btn !== villainAvatarBtn) {
+                    btn.disabled = true;
+                };
+            });
+            const villainImg = villainAvatarBtn.querySelector("img");
+            players[1].name = villainImg.getAttribute("alt");
+            players[1].token = villainImg.getAttribute("src");
         });
-      });
     });
 
     return { changePlayerTurn, getActivePlayer, playRound, checkWinner, checkTie }
