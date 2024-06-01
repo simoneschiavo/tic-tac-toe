@@ -103,9 +103,11 @@ const GameController = (function () {
                 ScreenController.showWinnerMsg();
                 ScreenController.updateScore(getActivePlayer());
                 Gameboard.disableAllCells();
-            } else {
-                checkTie();
-            }; 
+                return true;
+            };
+            
+            checkTie();
+            return false;
         };
     };
 
