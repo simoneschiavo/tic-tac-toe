@@ -123,6 +123,28 @@ const GameController = (function () {
         };
     };
 
+    const heroAvatarBtns = document.querySelectorAll(".hero-avatar");
+    heroAvatarBtns.forEach(heroAvatarBtn => {
+        heroAvatarBtn.addEventListener("click", () => {
+            heroAvatarBtns.forEach(btn => {
+                if (btn !== heroAvatarBtn) {
+                    btn.disabled = true;
+                };
+            });
+        });
+    });
+
+    const villainAvatarBtns = document.querySelectorAll(".villain-avatar");
+    villainAvatarBtns.forEach((villainAvatarBtn) => {
+      villainAvatarBtn.addEventListener("click", () => {
+        villainAvatarBtns.forEach((btn) => {
+          if (btn !== villainAvatarBtn) {
+            btn.disabled = true;
+          }
+        });
+      });
+    });
+
     return { changePlayerTurn, getActivePlayer, playRound, checkWinner, checkTie }
 
 })();
