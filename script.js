@@ -41,7 +41,9 @@ const Gameboard = (function () {
         gameEnded = true;
     };
 
-    return { get, render, reset, markCell, disableAllCells };
+    const isGameEnded = () => gameEnded;
+
+    return { get, render, reset, markCell, disableAllCells, isGameEnded };
 })();
 
 const GameController = (function () {
@@ -50,6 +52,7 @@ const GameController = (function () {
     newGameBtn.addEventListener("click", () => {
         Gameboard.reset();
         Gameboard.render();
+        ScreenController.showMoveMsg();
         ScreenController.removeWinnerMsg();
         ScreenController.removeTieMsg();
     });
@@ -72,7 +75,11 @@ const GameController = (function () {
     let activePlayer = players[0];
 
     const changePlayerTurn = () => {
-        activePlayer = activePlayer === players[0] ? players[1] : players[0];
+        if (!Gameboard.isGameEnded()) {
+            activePlayer =
+              activePlayer === players[0] ? players[1] : players[0];
+            ScreenController.showMoveMsg();
+        };
     };
 
     const getActivePlayer = () => activePlayer;
@@ -112,6 +119,7 @@ const GameController = (function () {
     const checkTie = () => {
         if (Gameboard.get().every(position => position !== "")) {
             ScreenController.showTieMsg();
+            Gameboard.disableAllCells();
         };
     };
 
@@ -121,6 +129,8 @@ const GameController = (function () {
 
 const ScreenController = (function () {
     const gameControllers = document.querySelector(".game-controllers");
+
+    const systemMsgsDiv = document.querySelector(".system-msgs");
 
     const winnerMsg = document.createElement("div");
     winnerMsg.classList.add("winner-msg");
@@ -133,20 +143,26 @@ const ScreenController = (function () {
 
     const showWinnerMsg = () => {
         winnerMsg.textContent = `${GameController.getActivePlayer().name} won!`;
+        removeMoveMsg();
         gameControllers.appendChild(winnerMsg);
     };
 
     const removeWinnerMsg = () => {
-        gameControllers.removeChild(winnerMsg);
+        if (winnerMsg.parentNode === gameControllers) {
+          gameControllers.removeChild(winnerMsg);
+        }
     };
 
     const showTieMsg = () => {
         tieMsg.textContent = `This game is a tie - Keep on playing!`;
+        removeMoveMsg();
         gameControllers.appendChild(tieMsg);
     };
 
     const removeTieMsg = () => {
-        gameControllers.removeChild(tieMsg);
+        if (tieMsg.parentNode === gameControllers) {
+            gameControllers.removeChild(tieMsg);
+        };
     };
 
     const updateScore = player => {
@@ -156,5 +172,19 @@ const ScreenController = (function () {
             : playerTwoScoreDiv.textContent = player.score;
     };
 
-    return { showWinnerMsg, removeWinnerMsg, showTieMsg, removeTieMsg, updateScore }
+    const moveMsg = document.createElement("div");
+        moveMsg.classList.add("move-msg");
+
+    const showMoveMsg = () => {
+        moveMsg.textContent = `${GameController.getActivePlayer().name}, is your turn.`;
+        systemMsgsDiv.appendChild(moveMsg);
+    };
+
+    const removeMoveMsg = () => {
+        if (moveMsg.parentNode === systemMsgsDiv) {
+            systemMsgsDiv.removeChild(moveMsg);
+        };
+    };
+
+    return { showWinnerMsg, removeWinnerMsg, showTieMsg, removeTieMsg, updateScore, showMoveMsg }
 })();
