@@ -53,6 +53,15 @@ const Gameboard = (function () {
 const GameController = (function () {
     // When "Start new game" button is clicked, render the gameboard
     const newGameBtn = document.querySelector(".new-game-btn");
+
+    newGameBtn.disabled = true;
+
+    const checkNewGameBtnEnablement = () => {
+        if (players[0].name !== "Player One" && players[1].name !== "Player Two") {
+            newGameBtn.disabled = false;
+        };
+    }; 
+
     newGameBtn.addEventListener("click", () => {
         Gameboard.reset();
         Gameboard.render();
@@ -144,6 +153,7 @@ const GameController = (function () {
             players[0].name = heroImg.getAttribute("alt");
             players[0].token = heroImg.getAttribute("src");
             ScreenController.updateHeroSelectorMsg(heroImg);
+            checkNewGameBtnEnablement();
         });
     });
 
@@ -159,6 +169,7 @@ const GameController = (function () {
             players[1].name = villainImg.getAttribute("alt");
             players[1].token = villainImg.getAttribute("src");
             ScreenController.updateVillainSelectorMsg(villainImg);
+            checkNewGameBtnEnablement();
         });
     });
 
