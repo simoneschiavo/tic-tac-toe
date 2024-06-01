@@ -56,6 +56,7 @@ const GameController = (function () {
     newGameBtn.addEventListener("click", () => {
         Gameboard.reset();
         Gameboard.render();
+        newGameBtn.textContent = "Next battle"
         ScreenController.showMoveMsg();
         ScreenController.removeWinnerMsg();
         ScreenController.removeTieMsg();
