@@ -61,6 +61,12 @@ p, h1, h2, h3, h4, h5, h6 {
   --dark-yellow: #F7941D;
   --violet: #6570D6;
   --dark-violet: #272F7A;
+  --black: #000;
+  --white: #fff;
+}
+
+html {
+  background-color: #000;
 }
 
 body {
@@ -69,6 +75,7 @@ body {
   align-content: center;
   justify-items: center;
   height: 100vh;
+  color: var(--white);
 }
 
 .hidden {
@@ -89,8 +96,20 @@ button > img {
 
 /* First Screen */
 
+.title-container {
+  position: relative;
+  text-align: center;
+}
+
 .game-title {
+  position: relative;
   font-family: "Bangers", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: .8;
+  z-index: 2;
+}
+
+.game-title > * {
+  z-index: 2;
 }
 
 .game-title > .heroes {
@@ -104,6 +123,16 @@ button > img {
   color: var(--violet);
   font-size: 100px;
   text-shadow: -10px 0px 0px var(--dark-violet);
+}
+
+.subtitle {
+  font-family: "Bangers";
+  font-size: 40px;
+  rotate: -3deg;
+  background-color: var(--white);
+  padding: 0px 50px;
+  z-index: 1;
+  color: var(--black);
 }
 
 /*Gameboard */
