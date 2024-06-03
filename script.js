@@ -51,7 +51,7 @@ const Gameboard = (function () {
 })();
 
 const GameController = (function () {
-    // When "Start new game" button is clicked, render the gameboard
+    
     const newGameBtn = document.querySelector(".new-game-btn");
 
     newGameBtn.disabled = true;
@@ -68,7 +68,7 @@ const GameController = (function () {
         Gameboard.render();
         newGameBtn.textContent = "Next battle"
         newGameBtn.disabled = true;
-        ScreenController.hideGameControllers();
+        ScreenController.hidePlayersSelector();
         ScreenController.showMoveMsg();
         ScreenController.removeWinnerMsg();
         ScreenController.removeTieMsg();
@@ -241,18 +241,17 @@ const ScreenController = (function () {
 
     const updateHeroSelectorMsg = (img) => {
         const heroSelectorMsg = document.querySelector(".hero-selector-msg");
-        heroSelectorMsg.textContent = `Player 1, you have selected ${img.getAttribute("alt")} as your warrior. Good luck!`;
+        heroSelectorMsg.textContent = `${img.getAttribute("alt")}. Good luck!`;
     };
 
     const updateVillainSelectorMsg = (img) => {
       const villainSelectorMsg = document.querySelector(".villain-selector-msg");
-      villainSelectorMsg.textContent = `Player 2, you have chosen ${img.getAttribute(
-        "alt"
-      )} to fight for you. Good luck!`;
+      villainSelectorMsg.textContent = `${img.getAttribute("alt")}. Good luck!`;
     };
 
-    const hideGameControllers = () => {
-        gameControllers.classList.toggle("hidden");
+    const playersSelector = document.querySelector(".players-selector");
+    const hidePlayersSelector = () => {
+        playersSelector.classList.toggle("hidden");
     };
 
     const scoreControllers = document.querySelector(".score-controllers");
@@ -260,5 +259,5 @@ const ScreenController = (function () {
         scoreControllers.classList.toggle("hidden");
     };
 
-    return { showWinnerMsg, removeWinnerMsg, showTieMsg, removeTieMsg, updateScore, showMoveMsg, updateHeroSelectorMsg, updateVillainSelectorMsg, hideGameControllers, showScoreControllers }
+    return { showWinnerMsg, removeWinnerMsg, showTieMsg, removeTieMsg, updateScore, showMoveMsg, updateHeroSelectorMsg, updateVillainSelectorMsg, hidePlayersSelector, showScoreControllers }
 })();

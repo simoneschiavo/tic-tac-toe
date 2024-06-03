@@ -80,7 +80,7 @@ body {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 button {
@@ -144,12 +144,23 @@ button > img {
 
 .game-controllers {
   margin-top: 30px;
+  display: grid;
+  justify-items: center;
+  row-gap: 25px;
 }
 
 .players-selector {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 50px;
+  align-content: center;
+  align-items: center;
+}
+
+.player-1-selector,
+.player-2-selector {
+  display: grid;
+  justify-items: center;
 }
 
 .hero-selector,
@@ -163,6 +174,8 @@ button > img {
 .villain-selector-msg {
   text-align: center;
   font-size: 24px;
+  padding: 5px;
+  max-width: 30ch;
 }
 
 .hero-selector-msg > .emphasis {
@@ -216,6 +229,22 @@ button > img {
 .villain-selected {
   background-color: var(--dark-violet) !important;
   border-color: var(--dark-violet) !important;
+}
+
+.new-game-btn {
+  font-size: 40px;
+  padding: 10px 45px;
+  background-color: var(--dark-yellow);
+  transform: skewX(-15deg);
+  box-shadow: 6px 6px 0 var(--dark-violet);
+  max-width: 300px;
+  text-align: center;
+  transition: 500ms;
+}
+
+.new-game-btn:disabled {
+  background-color: var(--dark-violet);
+  box-shadow: 6px 6px 0 var(--dark-yellow);
 }
 
 /*Gameboard */
