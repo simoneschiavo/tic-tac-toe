@@ -199,6 +199,25 @@ button > img {
   border-color: var(--dark-yellow) !important;
 }
 
+.villain-selector > button {
+  background-color: var(--violet);
+  border: 5px solid var(--violet);
+  transition: 500ms;
+}
+
+.villain-selector > button:hover {
+  border-color: var(--dark-violet);
+}
+
+.villain-selector > button:disabled {
+  border-color: var(--violet) !important;
+}
+
+.villain-selected {
+  background-color: var(--dark-violet) !important;
+  border-color: var(--dark-violet) !important;
+}
+
 /*Gameboard */
 
 #gameboard {
