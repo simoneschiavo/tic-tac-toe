@@ -197,24 +197,24 @@ const ScreenController = (function () {
     const showWinnerMsg = () => {
         winnerMsg.textContent = `${GameController.getActivePlayer().name} won!`;
         removeMoveMsg();
-        gameControllers.appendChild(winnerMsg);
+        systemMsgsDiv.appendChild(winnerMsg);
     };
 
     const removeWinnerMsg = () => {
-        if (winnerMsg.parentNode === gameControllers) {
-          gameControllers.removeChild(winnerMsg);
+        if (winnerMsg.parentNode === systemMsgsDiv) {
+            systemMsgsDiv.removeChild(winnerMsg);
         }
     };
 
     const showTieMsg = () => {
         tieMsg.textContent = `This game is a tie - Keep on playing!`;
         removeMoveMsg();
-        gameControllers.appendChild(tieMsg);
+        systemMsgsDiv.appendChild(tieMsg);
     };
 
     const removeTieMsg = () => {
-        if (tieMsg.parentNode === gameControllers) {
-            gameControllers.removeChild(tieMsg);
+        if (tieMsg.parentNode === systemMsgsDiv) {
+            systemMsgsDiv.removeChild(tieMsg);
         };
     };
 
@@ -251,7 +251,7 @@ const ScreenController = (function () {
 
     const playersSelector = document.querySelector(".players-selector");
     const hidePlayersSelector = () => {
-        playersSelector.classList.toggle("hidden");
+        playersSelector.classList.add("hidden");
     };
 
     const scoreControllers = document.querySelector(".score-controllers");
