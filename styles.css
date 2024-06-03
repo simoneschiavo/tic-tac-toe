@@ -178,12 +178,14 @@ button > img {
   max-width: 30ch;
 }
 
-.hero-selector-msg > .emphasis {
+.hero-selector-msg > .emphasis,
+.player-one-box-score > .emphasis {
   color: var(--yellow);
   text-shadow: 2px 0px 0px var(--dark-yellow);
 }
 
-.villain-selector-msg > .emphasis {
+.villain-selector-msg > .emphasis,
+.player-two-box-score > .emphasis {
   color: var(--violet);
   text-shadow: 1px 0px 0px var(--dark-violet);
 }
@@ -245,6 +247,21 @@ button > img {
 .new-game-btn:disabled {
   background-color: var(--dark-violet);
   box-shadow: 6px 6px 0 var(--dark-yellow);
+}
+
+/* Scores */
+
+.score-controllers {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 50px;
+  font-size: 40px;
+}
+
+.player-one-box-score {
+  justify-self: end;
+  display: grid;
+  justify-items: end;
 }
 
 /*Gameboard */
