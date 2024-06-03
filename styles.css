@@ -273,13 +273,19 @@ button > img {
 
 #gameboard {
     display: grid;
-    grid-template-columns: repeat(3, 100px);
+    grid-template-columns: repeat(3, 150px);
     justify-content: center;
     align-items: center;
 }
 
 .cell {
     border: 2px solid var(--white);
-    height: 100px;
-    width: 100px;
+    height: 150px;
+    width: 150px;
+}
+
+.token > img {
+  max-height: 100px;
+  padding: 10px;
+  margin: 0 auto;
 }
