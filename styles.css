@@ -264,6 +264,11 @@ button > img {
   justify-items: end;
 }
 
+/* System Messages */
+.system-msgs {
+  font-size: 24px;
+}
+
 /*Gameboard */
 
 #gameboard {
