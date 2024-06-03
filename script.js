@@ -150,6 +150,7 @@ const GameController = (function () {
                     btn.disabled = true;
                 };
             });
+            heroAvatarBtn.classList.toggle("hero-selected");
             const heroImg = heroAvatarBtn.querySelector("img");
             players[0].name = heroImg.getAttribute("alt");
             players[0].token = heroImg.getAttribute("src");
@@ -166,6 +167,7 @@ const GameController = (function () {
                     btn.disabled = true;
                 };
             });
+            villainAvatarBtn.classList.toggle("villain-selected");
             const villainImg = villainAvatarBtn.querySelector("img");
             players[1].name = villainImg.getAttribute("alt");
             players[1].token = villainImg.getAttribute("src");
