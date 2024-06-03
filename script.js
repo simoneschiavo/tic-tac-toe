@@ -59,7 +59,6 @@ const GameController = (function () {
     const checkNewGameBtnEnablement = () => {
         if (players[0].name !== "Player One" && players[1].name !== "Player Two") {
             newGameBtn.disabled = false;
-            ScreenController.showScoreControllers();
         };
     }; 
 
@@ -69,6 +68,7 @@ const GameController = (function () {
         newGameBtn.textContent = "Next battle"
         newGameBtn.disabled = true;
         ScreenController.hidePlayersSelector();
+        ScreenController.showScoreControllers();
         ScreenController.showMoveMsg();
         ScreenController.removeWinnerMsg();
         ScreenController.removeTieMsg();
@@ -256,7 +256,7 @@ const ScreenController = (function () {
 
     const scoreControllers = document.querySelector(".score-controllers");
     const showScoreControllers = () => {
-        scoreControllers.classList.toggle("hidden");
+        scoreControllers.classList.remove("hidden");
     };
 
     return { showWinnerMsg, removeWinnerMsg, showTieMsg, removeTieMsg, updateScore, showMoveMsg, updateHeroSelectorMsg, updateVillainSelectorMsg, hidePlayersSelector, showScoreControllers }
